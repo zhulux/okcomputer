@@ -100,6 +100,18 @@ OkComputer.mount_at = false
 mount OkComputer::Engine, at: "/custom_path"
 ```
 
+### Logging check results
+
+Log check results by setting `OkComputer.logger`. Note: results will be logged at the `info` level.
+
+```ruby
+OkComputer.logger = Rails.logger
+```
+
+```sh
+[okcomputer] mycheck: PASSED mymessage (0s)
+```
+
 ### Registering Additional Checks
 
 Register additional checks in an initializer, like so:

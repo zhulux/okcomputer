@@ -111,6 +111,16 @@ describe OkComputer do
     end
   end
 
+  context "#logger" do
+    it "has a default logger value of a nil logger" do
+      expect(OkComputer.logger).to be_a Logger
+    end
+
+    it "allows configuration of logger" do
+      expect(OkComputer.respond_to?('logger=')).to be_truthy
+    end
+  end
+
   context '#make_optional' do
     before do
       OkComputer::Registry.register "some_required_check", OkComputer::RubyVersionCheck.new

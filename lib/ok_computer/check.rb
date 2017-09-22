@@ -17,6 +17,7 @@ module OkComputer
       with_benchmarking do
         check
       end
+      OkComputer.logger.info "[okcomputer] #{to_text}"
     end
 
     # Private: Perform the appropriate check
