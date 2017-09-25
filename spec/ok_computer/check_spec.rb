@@ -27,6 +27,17 @@ module OkComputer
         subject.run
         expect(subject.time).to be >= 0
       end
+
+      it "prints the text to the logger" do
+        expect(subject).to receive(:clear)
+        expect(subject).to receive(:check)
+
+        subject.registrant_name = "mycheck"
+        subject.message = "mymessage"
+        expect(OkComputer.logger).to receive(:info).with(/\A\[okcomputer\] mycheck: PASSED mymessage \(.+\)\z/)
+
+        subject.run
+      end
     end
 
     context "#clear" do

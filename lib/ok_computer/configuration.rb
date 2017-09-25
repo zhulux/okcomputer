@@ -58,6 +58,9 @@ module OkComputer
     # Public: Option to disable third-party app performance tools (.e.g NewRelic) from counting OkComputer routes towards their total.
     attr_accessor :analytics_ignore
 
+    # Public: Logger to use to log check results
+    attr_accessor :logger
+
     # Private: The username for access to checks
     attr_accessor :username
 
@@ -77,6 +80,7 @@ module OkComputer
   self.mount_at = 'okcomputer'
   self.check_in_parallel = false
   self.analytics_ignore = true
+  self.logger = Logger.new nil
   self.options = {}
 
 end
