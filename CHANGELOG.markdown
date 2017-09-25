@@ -1,3 +1,7 @@
+#### v1.17.0
+
+* Allow optional logging through `OkComputer.logger`. Enable by providing a configured logger to `OkComputer.logger=`.
+
 #### v1.16.0
 
 * Add a Resque Scheduler check
