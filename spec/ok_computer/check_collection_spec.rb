@@ -6,6 +6,11 @@ module OkComputer
     let(:barcheck) { double(:check) }
     let(:registry) { {foo: foocheck, bar: barcheck} }
 
+    before do
+        allow(foocheck).to receive(:registrant_name=)
+        allow(barcheck).to receive(:registrant_name=)
+    end
+
     subject { CheckCollection.new("foo collection name") }
 
     context ".new" do
