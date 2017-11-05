@@ -68,6 +68,7 @@ module OkComputer
     #
     # Returns the check
     def register(name, check)
+      check.registrant_name = name
       collection[name] = check
     end
 
