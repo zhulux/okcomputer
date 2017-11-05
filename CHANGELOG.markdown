@@ -1,3 +1,6 @@
+* Check name in CheckCollection#Register
+  > elliott-beach: https://github.com/sportngin/okcomputer/pull/141
+
 #### v1.17.0
 
 * Allow optional logging through `OkComputer.logger`. Enable by providing a configured logger to `OkComputer.logger=`.
