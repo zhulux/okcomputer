@@ -1,3 +1,4 @@
+#### v1.17.1
 * Check name in CheckCollection#Register
   > elliott-beach: https://github.com/sportngin/okcomputer/pull/141
 
