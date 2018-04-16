@@ -6,38 +6,47 @@ module OkComputer
       expect(subject).to be_a Check
     end
 
-    context "#check" do
-      context "if activerecord supports needs_migration?" do
-        before do
-          allow(ActiveRecord::Migrator).to receive(:respond_to?).with(:needs_migration?).and_return(true)
+    if Gem::Version.new(ActiveRecord::VERSION::STRING) > Gem::Version.new("3.99.99") # Rails >= 4.0
+
+      context "when activerecord supports needs_migration?" do
+        context "#supported?" do
+          it { expect(subject.supported?).to be_truthy }
         end
 
-        context "with no pending migrations" do
-          before do
-            expect(ActiveRecord::Migrator).to receive(:needs_migration?).and_return(false)
+        context "#check" do
+          context "with no pending migrations" do
+            before do
+              expect(subject).to receive(:needs_migration?).and_return(false)
+            end
+
+            it { is_expected.to be_successful }
+            it { is_expected.to have_message "NO pending migrations" }
           end
 
-          it { is_expected.to be_successful }
-          it { is_expected.to have_message "NO pending migrations" }
+          context "with pending migrations" do
+            before do
+              expect(subject).to receive(:needs_migration?).and_return(true)
+            end
+
+            it { is_expected.not_to be_successful }
+            it { is_expected.to have_message "Pending migrations" }
+          end
+        end
+      end
+
+    else # Rails <= 3.2
+
+      context "when on older versions of ActiveRecord" do
+        context "#supported?" do
+          it { expect(subject.supported?).to be_falsey }
         end
 
-        context "with pending migrations" do
-          before do
-            expect(ActiveRecord::Migrator).to receive(:needs_migration?).and_return(true)
-          end
-
+        context "#check" do
           it { is_expected.not_to be_successful }
-          it { is_expected.to have_message "Pending migrations" }
+          it { is_expected.to have_message "This version of ActiveRecord does not support checking whether migrations are pending" }
         end
       end
 
-      context "on older versions of ActiveRecord" do
-        before do
-          allow(ActiveRecord::Migrator).to receive(:respond_to?).with(:needs_migration?).and_return(false)
-        end
-
-        it { is_expected.not_to be_successful }
-      end
     end
   end
 end
