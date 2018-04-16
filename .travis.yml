@@ -2,15 +2,14 @@ language: ruby
 before_install:
   - gem install bundler
 env:
-  - RAILS_VERSION=5.0
+  - RAILS_VERSION=5.2
+  - RAILS_VERSION=5.1
   - RAILS_VERSION=4.2
-  - RAILS_VERSION=4.1
-  - RAILS_VERSION=3.2
 rvm:
-  - 2.1.9
-  - 2.2.5
-  - 2.3.1
+  - 2.3.7
+  - 2.4.4
+  - 2.5.0
 matrix:
-  exclude:
-  - RAILS_VERSION=5.0
-  - rvm: 2.1.9
+  include:
+    - rvm: 2.2.9
+      env: RAILS_VERSION=3.2
