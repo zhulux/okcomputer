@@ -1,3 +1,7 @@
+#### v1.17.2
+#### v1.17.2
+* Add Support for Rails 5.2 Migration Check
+  > 	rmm5t: https://github.com/sportngin/okcomputer/pull/147
 #### v1.17.1
 * Check name in CheckCollection#Register
   > elliott-beach: https://github.com/sportngin/okcomputer/pull/141
