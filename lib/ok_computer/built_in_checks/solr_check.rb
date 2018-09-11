@@ -29,7 +29,7 @@ module OkComputer
     # Public: Returns true if Solr's ping returned OK, otherwise false
     def ping?
       response = perform_request
-      !!(response =~ %r(<str name="status">OK</str>))
+      !!(response =~ Regexp.union(%r(<str name="status">OK</str>), %r("status":"OK")))
     end
   end
 end
