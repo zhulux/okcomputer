@@ -70,27 +70,48 @@ module OkComputer
         end
 
         context "when the status is OK" do
-          let(:response) do
-            %q(
-                <?xml version="1.0" ?>
-                <response>
-                    <lst name="responseHeader">
-                        <int name="status">0</int>
-                        <int name="QTime">2</int>
-                        <lst name="params">
-                            <str name="echoParams">all</str>
-                            <str name="q">solrpingquery</str>
-                            <str name="qt">standard</str>
-                            <str name="echoParams">all</str>
-                        </lst>
-                    </lst>
-                    <str name="status">OK</str>
-                </response>
-            )
+          context "with an XML response body" do
+            let(:response) do
+              %q(
+                  <?xml version="1.0" ?>
+                  <response>
+                      <lst name="responseHeader">
+                          <int name="status">0</int>
+                          <int name="QTime">2</int>
+                          <lst name="params">
+                              <str name="echoParams">all</str>
+                              <str name="q">solrpingquery</str>
+                              <str name="qt">standard</str>
+                              <str name="echoParams">all</str>
+                          </lst>
+                      </lst>
+                      <str name="status">OK</str>
+                  </response>
+              )
+            end
+
+            it "returns true" do
+              expect(subject.ping?).to be true
+            end
           end
 
-          it "returns true" do
-            expect(subject.ping?).to be true
+          context "with a JSON response body" do
+            let(:response) do
+              %q(
+                {
+                  "responseHeader":{
+                    "zkConnected":true,
+                    "status":0,
+                    "QTime":17279,
+                  },
+                  "status":"OK"
+                }
+              )
+            end
+
+            it "returns true" do
+              expect(subject.ping?).to be true
+            end
           end
         end
 
