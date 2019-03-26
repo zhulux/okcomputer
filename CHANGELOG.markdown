@@ -1,6 +1,15 @@
+#### v1.17.4
+* Update check times to display fractional seconds
+  > stevendaniels: https://github.com/sportngin/okcomputer/pull/155
+
+#### v1.17.3
+* Update the built-in SolrCheck for compatibility with Solr 7+
+  > cbeer: https://github.com/sportngin/okcomputer/pull/151
+
 #### v1.17.2
 * Add Support for Rails 5.2 Migration Check
   > 	rmm5t: https://github.com/sportngin/okcomputer/pull/147
+
 #### v1.17.1
 * Check name in CheckCollection#Register
   > elliott-beach: https://github.com/sportngin/okcomputer/pull/141
