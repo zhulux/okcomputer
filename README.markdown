@@ -20,7 +20,6 @@ OkComputer currently supports the following Rails versions:
 * 5.2
 * 5.1
 * 4.2
-* 3.2
 
 #### Not using Rails?
 
